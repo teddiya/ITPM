@@ -5,26 +5,32 @@
  */
 package GUI;
 
-
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
  * @author ASUS
  */
 public class Home extends javax.swing.JFrame {
-
-private String FilePath;
-private JFrame frame;
-    private String filePath;
-
+    
     public Home() {
         initComponents();
-        //disable the maximize button
-    setResizable(false);
+
+        setResizable(false);
     }
 
     /**
@@ -36,21 +42,21 @@ private JFrame frame;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        submitcode = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        submitcode.setBackground(new java.awt.Color(102, 102, 255));
-        submitcode.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
-        submitcode.setText("Click here to choose your code...");
-        submitcode.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton1.setText("Submit Your Code");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitcodeActionPerformed(evt);
             }
         });
-        getContentPane().add(submitcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, 380, 60));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 560, 460, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Desktop - 1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -61,20 +67,22 @@ private JFrame frame;
 
     private void submitcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitcodeActionPerformed
 
-         
-        // calling selector file chooser
- JFileChooser jf = new JFileChooser();
-FileNameExtensionFilter filter = new FileNameExtensionFilter(
- "JAVA and C++ source files", "java", "cpp");
-jf.setAcceptAllFileFilterUsed(false);
-jf.setFileFilter(filter);
-int returnVal = jf.showOpenDialog(null);
- if(returnVal == JFileChooser.APPROVE_OPTION) {
-String filepath=jf.getSelectedFile().getAbsolutePath();
-   setFilePath(filepath);
-   ComplexityCalculationProc(filepath,jf.getSelectedFile().getName());
-   //JOptionPane.showMessageDialog(null, "Complexity Calculation Completed","Success",JOptionPane.INFORMATION_MESSAGE);
-}
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        jfc.setDialogTitle("Select an code");
+        jfc.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Java and C++ code", "java", "cpp");
+        jfc.addChoosableFileFilter(filter);
+
+        int returnValue = jfc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            System.out.println(jfc.getSelectedFile().getPath());
+        }
+
+
+        File myObj = new File(jfc.getSelectedFile().getPath());
+        new FileChoose(myObj).setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_submitcodeActionPerformed
 
     /**
@@ -82,6 +90,7 @@ String filepath=jf.getSelectedFile().getAbsolutePath();
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -113,20 +122,10 @@ String filepath=jf.getSelectedFile().getAbsolutePath();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton submitcode;
     // End of variables declaration//GEN-END:variables
 
-    public String getFilePath() {
-		return FilePath;
-	}
-    private void setFilePath(String filepath) {
-        FilePath = filePath;
-    }
-
-    private void ComplexityCalculationProc(String filepath, String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
 
 //comment
