@@ -35,12 +35,12 @@ public class FileChoose extends javax.swing.JFrame {
             String data = "Not Working";
             while (myReader.hasNextLine()) {
                 
-                data = data+"\n"+myReader.nextLine();
+                data = data+"\n"+myReader.nextLine();//get the code line by line
                 
             }
             myReader.close();
 //            System.out.println(data);
-            jTextArea1.setText(data);
+            jTextArea1.setText(data);//set code to text area
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FileChoose.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -213,7 +213,7 @@ public class FileChoose extends javax.swing.JFrame {
 
     private void GoHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoHomeActionPerformed
         this.setVisible(false);
-        new Home().setVisible(true);
+        new Home().setVisible(true);//return to home() jframe
     }//GEN-LAST:event_GoHomeActionPerformed
 
     private void SizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SizeActionPerformed
@@ -238,7 +238,7 @@ public class FileChoose extends javax.swing.JFrame {
 
     private void InheritenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InheritenceActionPerformed
 
-            new InheritanceTable().setVisible(true);
+            new InheritanceTable().setVisible(true);//View table inhritanceTable jframe
             
     }//GEN-LAST:event_InheritenceActionPerformed
 

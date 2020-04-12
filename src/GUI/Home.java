@@ -75,13 +75,13 @@ public class Home extends javax.swing.JFrame {
 
         int returnValue = jfc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            System.out.println(jfc.getSelectedFile().getPath());
+            System.out.println(jfc.getSelectedFile().getPath());//Choose files from file chooser
         }
 
 
         File myObj = new File(jfc.getSelectedFile().getPath());
-        new FileChoose(myObj).setVisible(true);
-        this.setVisible(false);
+        new FileChoose(myObj).setVisible(true);//Send file to filechoose() Jframe
+        this.setVisible(false);//this frame visible false
 
     }//GEN-LAST:event_submitcodeActionPerformed
 
